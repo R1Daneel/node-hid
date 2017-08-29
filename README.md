@@ -355,6 +355,12 @@ electron-rebuild -v 0.36.5 --force -m . -w node-hid
 ## Using `node-hid` in NW.js projects
 (TBD)
 
+## Notes:
+This package comes with two versions already built of the native code for the platforms `win32-ia32` and `darwin-64bit`. The builds are
+created to match the version `1.6.11` of `electron`. If you need to use this package for a platform different from
+the listed above or for a different version of electron you can't use it. In this way you don't need to rebuild the library
+for the current platform allow you to release the electron app in any platform for all the supported ones.
+
 ## Support
 
 Please use the [node-hid github issues page](https://github.com/node-hid/node-hid/issues)
