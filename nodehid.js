@@ -1,11 +1,10 @@
 var EventEmitter = require("events").EventEmitter;
 var util = require("util");
 var path = require("path");
+var fs = require("fs");
 var native_lib_path = path.join(__dirname, '..', 'builds', 'node_hid_'+ process.platform + '.node');
 
 //Load C++ binding
-
-
 if(fs.existsSync(native_lib_path)) {
   var binding = require(native_lib_path);
 } else {
