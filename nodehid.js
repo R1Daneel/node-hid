@@ -1,8 +1,16 @@
-var EventEmitter = require("events").EventEmitter,
-    util = require("util");
+var EventEmitter = require("events").EventEmitter;
+var util = require("util");
+var path = require("path");
+var native_lib_path = path.join(__dirname, '..', 'builds', 'node_hid_'+ process.platform + '.node');
 
 //Load C++ binding
-var binding = require('bindings')('HID.node');
+
+
+if(fs.existsSync(native_lib_path)) {
+  var binding = require(native_lib_path);
+} else {
+  throw new Error('The build for the platform ' + process.platform + ' does not exist.');
+}
 
 //This class is a wrapper for `binding.HID` class
 function HID() {
