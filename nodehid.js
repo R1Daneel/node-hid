@@ -4,12 +4,13 @@ var path = require("path");
 var fs = require("fs");
 var native_lib_path = path.join(__dirname, '.', 'builds', 'node_hid_'+ process.platform + '.node');
 
-//Load C++ binding
-if(fs.existsSync(native_lib_path)) {
-  var binding = require(native_lib_path);
-} else {
+// If no build exist for the current platform throws an error
+if(!fs.existsSync(native_lib_path)) {
   throw new Error('The build for the platform ' + process.platform + ' does not exist.');
 }
+
+//Load C++ binding
+var binding = require(native_lib_path);
 
 //This class is a wrapper for `binding.HID` class
 function HID() {
